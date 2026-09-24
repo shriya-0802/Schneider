@@ -67,10 +67,3 @@ Built with a stunning, modern **Schneider Electric Light Theme**, GridSynth prov
    \`\`\`
    The application will be available at \`http://localhost:5173\`.
 
----
-
-## 📸 Automated UI Testing
-We have included a full suite of automated UI tests written in Puppeteer. 
-You can view the resulting high-resolution captures in the `/screenshots/` directory, which covers all Consumer and Admin views, fully styled in the Schneider Electric corporate aesthetic.
-
-*Built with ❤️ for a sustainable future.*
