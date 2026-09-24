@@ -1,6 +1,6 @@
 # GridSynth ⚡ (Schneider Electric Theme)
 
-> **Empowering Prosumers. Orchestrating Microgrids. Powered by AI.**
+Link-> https://schneider-rvtx.onrender.com/
 
 Welcome to **GridSynth**, an AI-powered renewable energy orchestration platform designed to transform traditional energy consumers into active, intelligent **Prosumers**. 
 
