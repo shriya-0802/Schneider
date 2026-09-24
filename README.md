@@ -7,7 +7,6 @@ Welcome to **GridSynth**, an AI-powered renewable energy orchestration platform 
 Built with a stunning, modern **Schneider Electric Light Theme**, GridSynth provides real-time digital twin monitoring, peer-to-peer (P2P) energy trading, and predictive AI load-balancing to ensure zero energy waste.
 
 ---
-
 ## 🌟 Key Features for Judges
 
 ### 1. Dual-Role Dashboard
