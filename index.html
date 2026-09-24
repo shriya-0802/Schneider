@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GridSynth — AI-Powered Prosumer Grid Orchestration</title>
+  <meta name="description" content="GridSynth: Turning every home into a power plant, every neighborhood into a microgrid. AI-powered prosumer grid orchestration platform for renewable energy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- LOADING SCREEN                               -->
+  <!-- ============================================ -->
+  <div id="loading-screen">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+          <circle cx="30" cy="30" r="28" stroke="url(#loaderGrad)" stroke-width="2" fill="none"/>
+          <path d="M20 35 L30 15 L33 28 L42 28 L30 45 L28 32 Z" fill="url(#loaderGrad)"/>
+          <defs><linearGradient id="loaderGrad" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#00E5A0"/><stop offset="100%" stop-color="#00B4D8"/></linearGradient></defs>
+        </svg>
+      </div>
+      <h2 class="loader-title">GridSynth</h2>
+      <p class="loader-subtitle">Initializing Grid Intelligence...</p>
+      <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- AUTH SCREEN (Signup / Login)                  -->
+  <!-- ============================================ -->
+  <div id="auth-screen" class="hidden">
+    <div class="auth-container">
+      <div class="auth-left">
+        <div class="auth-brand">
+          <svg width="48" height="48" viewBox="0 0 60 60" fill="none">
+            <circle cx="30" cy="30" r="28" stroke="url(#authGrad)" stroke-width="2" fill="none"/>
+            <path d="M20 35 L30 15 L33 28 L42 28 L30 45 L28 32 Z" fill="url(#authGrad)"/>
+            <defs><linearGradient id="authGrad" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#00E5A0"/><stop offset="100%" stop-color="#00B4D8"/></linearGradient></defs>
+          </svg>
+          <h1 class="auth-logo-text">GridSynth</h1>
+        </div>
+        <p class="auth-tagline">Turning Every Home into a Power Plant,<br>Every Neighborhood into a Microgrid</p>
+        <div class="auth-features">
+          <div class="auth-feature"><span>⚡</span><span>Real-Time Grid Monitoring</span></div>
+          <div class="auth-feature"><span>🤖</span><span>AI-Powered Forecasting</span></div>
+          <div class="auth-feature"><span>🔄</span><span>P2P Energy Trading</span></div>
+          <div class="auth-feature"><span>🌱</span><span>Carbon Credit Gamification</span></div>
+        </div>
+      </div>
+      <div class="auth-right">
+        <!-- Login Form -->
+        <div id="login-form" class="auth-form-card glass-card">
+          <h2>Welcome Back</h2>
+          <p class="auth-subtitle">Sign in to your GridSynth account</p>
+          <form id="login-form-el">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input type="email" id="login-email" placeholder="your@email.com" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="auth-btn primary-btn" id="login-btn">Sign In</button>
+          </form>
+          <p class="auth-switch">Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
+        </div>
+        <!-- Signup Form -->
+        <div id="signup-form" class="auth-form-card glass-card hidden">
+          <h2>Create Account</h2>
+          <p class="auth-subtitle">Join the GridSynth energy revolution</p>
+          <form id="signup-form-el">
+            <div class="form-group">
+              <label for="signup-name">Full Name</label>
+              <input type="text" id="signup-name" placeholder="Your Name" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="signup-email">Email</label>
+              <input type="email" id="signup-email" placeholder="your@email.com" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="signup-password">Password</label>
+              <input type="password" id="signup-password" placeholder="Min 6 characters" required minlength="6" autocomplete="new-password">
+            </div>
+            <div class="form-group">
+              <label for="signup-role">Account Type</label>
+              <div class="role-selector">
+                <button type="button" class="role-btn active" data-role="consumer">
+                  <span class="role-icon">🏠</span>
+                  <span class="role-label">Consumer</span>
+                  <span class="role-desc">Track usage & trade energy</span>
+                </button>
+                <button type="button" class="role-btn" data-role="admin">
+                  <span class="role-icon">⚡</span>
+                  <span class="role-label">Grid Admin</span>
+                  <span class="role-desc">Monitor & manage the grid</span>
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="signup-city">City</label>
+              <select id="signup-city" required>
+                <option value="">Select your city</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Pune">Pune</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Lucknow">Lucknow</option>
+                <option value="Bhopal">Bhopal</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Patna">Patna</option>
+                <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                <option value="Bhubaneswar">Bhubaneswar</option>
+                <option value="Dehradun">Dehradun</option>
+                <option value="Shimla">Shimla</option>
+                <option value="Gandhinagar">Gandhinagar</option>
+                <option value="Ranchi">Ranchi</option>
+                <option value="Raipur">Raipur</option>
+                <option value="Guwahati">Guwahati</option>
+                <option value="Imphal">Imphal</option>
+                <option value="Shillong">Shillong</option>
+                <option value="Aizawl">Aizawl</option>
+                <option value="Kohima">Kohima</option>
+                <option value="Agartala">Agartala</option>
+                <option value="Itanagar">Itanagar</option>
+                <option value="Gangtok">Gangtok</option>
+                <option value="Panaji">Panaji</option>
+                <option value="Srinagar">Srinagar</option>
+              </select>
+            </div>
+            <button type="submit" class="auth-btn primary-btn" id="signup-btn">Create Account</button>
+          </form>
+          <p class="auth-switch">Already have an account? <a href="#" id="show-login">Sign In</a></p>
+        </div>
+        <div class="auth-error hidden" id="auth-error"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- MAIN APP (shown after auth)                  -->
+  <!-- ============================================ -->
+  <div id="app" class="hidden">
+    <!-- Sidebar Navigation -->
+    <nav id="sidebar">
+      <div class="sidebar-logo">
+        <svg width="36" height="36" viewBox="0 0 60 60" fill="none">
+          <circle cx="30" cy="30" r="28" stroke="url(#sideGrad)" stroke-width="2" fill="none"/>
+          <path d="M20 35 L30 15 L33 28 L42 28 L30 45 L28 32 Z" fill="url(#sideGrad)"/>
+          <defs><linearGradient id="sideGrad" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#00E5A0"/><stop offset="100%" stop-color="#00B4D8"/></linearGradient></defs>
+        </svg>
+        <span class="logo-text">GridSynth</span>
+      </div>
+      <div class="nav-section-label" id="nav-role-label">Main</div>
+      <ul class="nav-links" id="nav-links">
+        <!-- Populated dynamically by JS based on role -->
+      </ul>
+      <div class="sidebar-footer">
+        <div class="live-indicator">
+          <span class="live-dot"></span>
+          <span>Live Data</span>
+        </div>
+        <button class="logout-btn" id="btn-reset-db" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.5); color: #EF4444; margin-bottom: 10px; width: 100%;">
+          <span>🧨 Reset DB</span>
+        </button>
+        <button class="logout-btn" id="logout-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+      <!-- Top Bar -->
+      <header id="topbar">
+        <div class="topbar-left">
+          <button id="sidebar-toggle" class="icon-btn" aria-label="Toggle sidebar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="breadcrumb">
+            <span class="breadcrumb-root">GridSynth</span>
+            <span class="breadcrumb-sep">/</span>
+            <span id="breadcrumb-page">Dashboard</span>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-weather-live" id="topbar-weather-live">
+            <span class="weather-live-icon" id="weather-live-icon">☀️</span>
+            <span id="weather-live-temp">--°C</span>
+            <span class="weather-live-city" id="weather-live-city">Loading...</span>
+          </div>
+          <div class="topbar-time" id="topbar-time"></div>
+          <div class="topbar-notifications">
+            <button class="icon-btn notification-btn" id="notification-btn" aria-label="Notifications">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+              <span class="notification-badge" id="notification-count">0</span>
+            </button>
+          </div>
+          <div class="topbar-user" id="topbar-user">
+            <div class="avatar-circle" id="avatar-initials">SY</div>
+            <span class="user-name" id="topbar-username">User</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Container -->
+      <div id="page-container">
+
+        <!-- ==================== ADMIN PAGES ==================== -->
+
+        <!-- Admin Dashboard -->
+        <section id="page-admin-dashboard" class="page">
+          <div class="dashboard-hero">
+            <div class="gridpulse-card glass-card">
+              <div class="gridpulse-header">
+                <h2>GridPulse™ Score</h2>
+                <span class="pulse-badge" id="pulse-status">Healthy</span>
+              </div>
+              <div class="gridpulse-body">
+                <div class="pulse-gauge-container">
+                  <canvas id="gridpulse-gauge" width="220" height="220"></canvas>
+                  <div class="pulse-score-overlay">
+                    <span class="pulse-score" id="pulse-score">--</span>
+                    <span class="pulse-label">/100</span>
+                  </div>
+                </div>
+                <div class="pulse-metrics">
+                  <div class="pulse-metric">
+                    <span class="metric-label">Frequency Deviation</span>
+                    <span class="metric-value" id="metric-freq">--</span>
+                    <div class="metric-bar"><div class="metric-fill good" id="bar-freq" style="width:0%"></div></div>
+                  </div>
+                  <div class="pulse-metric">
+                    <span class="metric-label">Voltage Stability</span>
+                    <span class="metric-value" id="metric-voltage">--</span>
+                    <div class="metric-bar"><div class="metric-fill good" id="bar-voltage" style="width:0%"></div></div>
+                  </div>
+                  <div class="pulse-metric">
+                    <span class="metric-label">Renewable Penetration</span>
+                    <span class="metric-value" id="metric-renewable">--</span>
+                    <div class="metric-bar"><div class="metric-fill medium" id="bar-renewable" style="width:0%"></div></div>
+                  </div>
+                  <div class="pulse-metric">
+                    <span class="metric-label">Demand-Supply Gap</span>
+                    <span class="metric-value" id="metric-gap">--</span>
+                    <div class="metric-bar"><div class="metric-fill good" id="bar-gap" style="width:0%"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="quick-stats">
+              <div class="stat-card glass-card">
+                <div class="stat-icon solar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></div>
+                <div class="stat-info"><span class="stat-label">TOTAL GENERATION</span><span class="stat-value" id="stat-gen-val">-- MW</span><span class="stat-change positive" id="stat-gen-change">--</span></div>
+              </div>
+              <div class="stat-card glass-card">
+                <div class="stat-icon consumption"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <div class="stat-info"><span class="stat-label">TOTAL CONSUMPTION</span><span class="stat-value" id="stat-con-val">-- MW</span><span class="stat-change positive" id="stat-con-change">--</span></div>
+              </div>
+              <div class="stat-card glass-card">
+                <div class="stat-icon prosumer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+                <div class="stat-info"><span class="stat-label">ACTIVE PROSUMERS</span><span class="stat-value" id="stat-pro-val">--</span><span class="stat-change positive" id="stat-pro-change">--</span></div>
+              </div>
+              <div class="stat-card glass-card">
+                <div class="stat-icon carbon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M7 10.5c0-2.21 2.239-4 5-4s5 1.79 5 4"/><path d="M12 22V12"/><path d="M8 16l4-4 4 4"/></svg></div>
+                <div class="stat-info"><span class="stat-label">CARBON SAVED TODAY</span><span class="stat-value" id="stat-carb-val">-- tCO₂</span><span class="stat-change positive" id="stat-carb-change">--</span></div>
+              </div>
+            </div>
+          </div>
+          <!-- Real-Time Weather Card -->
+          <div class="weather-banner glass-card" id="weather-banner">
+            <h3>🌤️ Real-Time Weather — <span id="weather-city-name">Loading...</span></h3>
+            <div class="weather-banner-grid" id="weather-banner-grid">
+              <!-- Filled by JS with live weather data -->
+            </div>
+          </div>
+          <div class="charts-row">
+            <div class="chart-card glass-card">
+              <div class="chart-header"><h3>Energy Generation vs Consumption (24h)</h3><div class="chart-legend"><span class="legend-item"><span class="legend-dot generation"></span>Generation</span><span class="legend-item"><span class="legend-dot consumption"></span>Consumption</span></div></div>
+              <div class="chart-body"><canvas id="chart-generation"></canvas></div>
+            </div>
+            <div class="chart-card glass-card">
+              <div class="chart-header"><h3>Energy Source Mix</h3></div>
+              <div class="chart-body"><canvas id="chart-mix"></canvas></div>
+            </div>
+          </div>
+          <div class="activity-row">
+            <div class="activity-card glass-card">
+              <div class="chart-header"><h3>Live Grid Events</h3><span class="live-tag"><span class="live-dot-sm"></span>Live</span></div>
+              <div class="activity-feed" id="activity-feed"></div>
+            </div>
+            <div class="chart-card glass-card">
+              <div class="chart-header"><h3>Grid Frequency (50 Hz Baseline)</h3></div>
+              <div class="chart-body"><canvas id="chart-frequency"></canvas></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Admin Digital Twin -->
+        <section id="page-admin-digital-twin" class="page">
+          <div class="page-header"><h1>Grid Digital Twin</h1><p class="page-desc">Interactive simulation of neighborhood microgrid with real-time energy flows</p></div>
+          <div class="twin-container">
+            <div class="twin-canvas-wrap glass-card">
+              <canvas id="digital-twin-canvas"></canvas>
+              <div class="twin-controls">
+                <button class="twin-btn" id="btn-toggle-solar">☀️ Solar</button>
+                <button class="twin-btn" id="btn-toggle-wind">💨 Wind</button>
+                <button class="twin-btn" id="btn-toggle-battery">🔋 Battery</button>
+                <button class="twin-btn" id="btn-simulate-fault">⚡ Fault</button>
+                <button class="twin-btn" id="btn-reset-twin">🔄 Reset</button>
+              </div>
+            </div>
+            <div class="twin-sidebar">
+              <div class="twin-info-card glass-card">
+                <h3>Grid Segment Info</h3>
+                <div class="twin-stats">
+                  <div class="twin-stat-row"><span>Total Nodes</span><span id="twin-nodes">12</span></div>
+                  <div class="twin-stat-row"><span>Active Lines</span><span id="twin-lines">15</span></div>
+                  <div class="twin-stat-row"><span>Solar Panels</span><span id="twin-solar">6</span></div>
+                  <div class="twin-stat-row"><span>Wind Turbines</span><span id="twin-wind">2</span></div>
+                  <div class="twin-stat-row"><span>Battery Storage</span><span id="twin-battery">3</span></div>
+                  <div class="twin-stat-row"><span>Grid Status</span><span id="twin-status" class="status-healthy">Stable</span></div>
+                </div>
+              </div>
+              <div class="twin-info-card glass-card">
+                <h3>Power Flow</h3>
+                <div class="flow-bars">
+                  <div class="flow-bar-item"><div class="flow-label">Solar → Grid</div><div class="flow-bar"><div class="flow-fill solar-flow" id="flow-solar" style="width:72%"></div></div><div class="flow-value" id="flow-solar-val">-- kW</div></div>
+                  <div class="flow-bar-item"><div class="flow-label">Wind → Grid</div><div class="flow-bar"><div class="flow-fill wind-flow" id="flow-wind" style="width:45%"></div></div><div class="flow-value" id="flow-wind-val">-- kW</div></div>
+                  <div class="flow-bar-item"><div class="flow-label">Battery → Grid</div><div class="flow-bar"><div class="flow-fill battery-flow" id="flow-battery" style="width:30%"></div></div><div class="flow-value" id="flow-battery-val">-- kW</div></div>
+                  <div class="flow-bar-item"><div class="flow-label">Grid → Homes</div><div class="flow-bar"><div class="flow-fill demand-flow" id="flow-demand" style="width:60%"></div></div><div class="flow-value" id="flow-demand-val">-- kW</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Admin Demand Response -->
+        <section id="page-admin-demand-response" class="page">
+          <div class="page-header"><h1>Demand Response Orchestrator</h1><p class="page-desc">Automated load management and priority-based curtailment during grid stress</p></div>
+          <div class="dr-hero">
+            <div class="dr-status-card glass-card">
+              <div class="dr-status-header"><h3>Grid Stress Level</h3><span class="dr-mode" id="dr-mode">Normal Mode</span></div>
+              <div class="dr-gauge-wrap"><canvas id="dr-gauge" width="280" height="160"></canvas></div>
+              <div class="dr-actions">
+                <button class="dr-btn normal active" id="btn-dr-normal">Normal</button>
+                <button class="dr-btn warning" id="btn-dr-warning">Warning</button>
+                <button class="dr-btn critical" id="btn-dr-critical">Critical</button>
+                <button class="dr-btn emergency" id="btn-dr-emergency">Emergency</button>
+              </div>
+            </div>
+            <div class="dr-loads glass-card">
+              <h3>Load Priority Matrix</h3>
+              <div class="load-list" id="load-list"></div>
+            </div>
+          </div>
+          <div class="dr-timeline glass-card">
+            <div class="chart-header"><h3>Demand vs Supply Timeline</h3></div>
+            <div class="chart-body tall"><canvas id="chart-dr-timeline"></canvas></div>
+          </div>
+        </section>
+
+        <!-- Admin AI Insights (Gemini) -->
+        <section id="page-admin-ai-insights" class="page">
+          <div class="page-header"><h1>🤖 AI Grid Advisor</h1><p class="page-desc">Gemini-powered intelligent grid analysis, anomaly detection & optimization recommendations</p></div>
+          <div class="ai-container">
+            <div class="ai-chat-card glass-card">
+              <div class="ai-chat-header">
+                <div class="ai-avatar"><span>🤖</span></div>
+                <div><h3>GridSynth AI Advisor</h3><p class="ai-model-tag">Powered by Gemini</p></div>
+              </div>
+              <div class="ai-chat-messages" id="ai-chat-messages">
+                <div class="ai-message bot">
+                  <p>Hello! I'm your AI Grid Advisor powered by Gemini. I can analyze your grid data, predict issues, and recommend optimizations.</p>
+                  <p>Try asking me:</p>
+                  <div class="ai-suggestions">
+                    <button class="ai-suggestion-btn" data-q="Analyze the current grid health and suggest improvements">📊 Analyze grid health</button>
+                    <button class="ai-suggestion-btn" data-q="What are the peak demand hours and how should we prepare?">⏰ Peak demand prediction</button>
+                    <button class="ai-suggestion-btn" data-q="How can we improve renewable energy penetration in our grid?">🌱 Improve renewables</button>
+                    <button class="ai-suggestion-btn" data-q="Analyze the current weather conditions and their impact on solar generation">🌤️ Weather impact analysis</button>
+                  </div>
+                </div>
+              </div>
+              <div class="ai-chat-input">
+                <input type="text" id="ai-input" placeholder="Ask the AI about your grid..." autocomplete="off">
+                <button id="ai-send-btn" class="ai-send">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="ai-sidebar">
+              <div class="ai-insight-card glass-card">
+                <h3>🔮 Auto-Insights</h3>
+                <div id="ai-auto-insights">
+                  <div class="insight-item"><span class="insight-icon">⚠️</span><span>Analyzing grid data...</span></div>
+                </div>
+              </div>
+              <div class="ai-insight-card glass-card">
+                <h3>📈 Grid Data Context</h3>
+                <div class="ai-context-data" id="ai-context-data">
+                  <div class="ctx-row"><span>Temperature</span><span id="ctx-temp">--</span></div>
+                  <div class="ctx-row"><span>Humidity</span><span id="ctx-humidity">--</span></div>
+                  <div class="ctx-row"><span>Wind Speed</span><span id="ctx-wind">--</span></div>
+                  <div class="ctx-row"><span>Cloud Cover</span><span id="ctx-cloud">--</span></div>
+                  <div class="ctx-row"><span>Grid Score</span><span id="ctx-score">--</span></div>
+                  <div class="ctx-row"><span>Generation</span><span id="ctx-gen">--</span></div>
+                  <div class="ctx-row"><span>Consumption</span><span id="ctx-con">--</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Admin All Users -->
+        <section id="page-admin-users" class="page">
+          <div class="page-header"><h1>User Management</h1><p class="page-desc">All registered prosumers and consumers on the platform</p></div>
+          <div class="users-table-card glass-card">
+            <div class="chart-header"><h3>Registered Users</h3><span class="user-count-badge" id="user-count-badge">0 users</span></div>
+            <div class="users-table-wrap">
+              <table class="orderbook-table" id="users-table">
+                <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>City</th><th>Joined</th><th>Status</th></tr></thead>
+                <tbody id="users-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div class="users-table-card glass-card" style="margin-top: 2rem;">
+            <div class="chart-header"><h3>Active Support Requests</h3></div>
+            <div class="users-table-wrap">
+              <table class="orderbook-table">
+                <thead><tr><th>User</th><th>Subject</th><th>Details</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody id="admin-requests-body">
+                  <tr><td colspan="5" style="text-align: center; color: var(--text-muted); padding: 2rem;">No pending requests</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="users-table-card glass-card" style="margin-top: 2rem;">
+            <div class="chart-header"><h3>Marketplace Trades Approval</h3></div>
+            <p style="color:var(--text-muted); margin-bottom:1rem; font-size: 0.9rem;">Approve peer-to-peer trades placed by consumers.</p>
+            <div class="users-table-wrap">
+              <table class="orderbook-table">
+                <thead><tr><th>User</th><th>Type</th><th>Energy</th><th>Price</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody id="admin-trades-body">
+                  <tr><td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2rem;">No pending trades</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== CONSUMER PAGES ==================== -->
+
+        <!-- Consumer Dashboard -->
+        <section id="page-consumer-dashboard" class="page">
+          <div class="page-header"><h1>My Energy Dashboard</h1><p class="page-desc">Your personal energy usage, generation, and savings at a glance</p></div>
+          <div class="consumer-hero">
+            <div class="consumer-welcome glass-card">
+              <h2 id="consumer-greeting">Good Evening! 👋</h2>
+              <p id="consumer-city-display">Your city: --</p>
+              <div class="consumer-weather-live" id="consumer-weather-card">
+                <!-- Filled by JS -->
+              </div>
+            </div>
+            <div class="quick-stats consumer-stats">
+              <div class="stat-card glass-card">
+                <div class="stat-icon solar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></div>
+                <div class="stat-info"><span class="stat-label">MY GENERATION</span><span class="stat-value" id="c-my-gen">-- kWh</span><span class="stat-change positive">Today</span></div>
+              </div>
+              <div class="stat-card glass-card">
+                <div class="stat-icon consumption"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <div class="stat-info"><span class="stat-label">MY CONSUMPTION</span><span class="stat-value" id="c-my-con">-- kWh</span><span class="stat-change positive">Today</span></div>
+              </div>
+              <div class="stat-card glass-card">
+                <div class="stat-icon prosumer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+                <div class="stat-info"><span class="stat-label">SAVINGS TODAY</span><span class="stat-value" id="c-my-savings">₹--</span><span class="stat-change positive">vs grid price</span></div>
+              </div>
+              <div class="stat-card glass-card">
+                <div class="stat-icon carbon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+                <div class="stat-info"><span class="stat-label">GREEN SCORE</span><span class="stat-value" id="c-my-score">--</span><span class="stat-change positive">pts</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="charts-row">
+            <div class="chart-card glass-card">
+              <div class="chart-header"><h3>My Usage Pattern (24h)</h3></div>
+              <div class="chart-body"><canvas id="chart-consumer-usage"></canvas></div>
+            </div>
+            <div class="chart-card glass-card">
+              <div class="chart-header"><h3>My Energy Sources</h3></div>
+              <div class="chart-body"><canvas id="chart-consumer-sources"></canvas></div>
+            </div>
+          </div>
+          
+          <div class="glass-card" style="margin-top: 1.5rem;">
+            <div class="chart-header"><h3>Grid Support & Requests</h3></div>
+            <p style="color:var(--text-muted); margin-bottom:1rem; font-size: 0.9rem;">Submit a request to the Grid Admin for maintenance or disputes.</p>
+            
+            <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+              <select id="request-subject" class="form-input" style="flex: 1;">
+                <option value="Billing Issue">Billing Issue</option>
+                <option value="Meter Maintenance">Meter Maintenance</option>
+                <option value="Connection Drop">Connection Drop</option>
+                <option value="P2P Dispute">P2P Trade Dispute</option>
+              </select>
+              <input type="text" id="request-details" class="form-input" placeholder="Explain your issue..." style="flex: 2;">
+              <button class="btn btn-primary" id="btn-submit-request" style="white-space: nowrap;">Submit Request</button>
+            </div>
+
+            <p style="color:var(--text-muted); margin-bottom:0.5rem; font-size: 0.9rem;">My Recent Requests:</p>
+            <div class="users-table-wrap">
+              <table class="orderbook-table">
+                <thead><tr><th>Date</th><th>Subject</th><th>Details</th><th>Status</th></tr></thead>
+                <tbody id="c-requests-body">
+                  <tr><td colspan="4" style="text-align: center; color: var(--text-muted); padding: 1rem;">No requests submitted</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Consumer Forecast -->
+        <section id="page-consumer-forecast" class="page">
+          <div class="page-header"><h1>AI Energy Forecast</h1><p class="page-desc">AI-powered prediction of your area's solar & wind generation for the next 24 hours</p></div>
+          <div class="forecast-grid">
+            <div class="forecast-main glass-card">
+              <div class="chart-header"><h3>Solar Generation Forecast</h3><div class="forecast-accuracy"><span class="accuracy-badge">Accuracy: <strong id="solar-accuracy">94.2%</strong></span></div></div>
+              <div class="chart-body tall"><canvas id="chart-solar-forecast"></canvas></div>
+            </div>
+            <div class="forecast-main glass-card">
+              <div class="chart-header"><h3>Wind Generation Forecast</h3><div class="forecast-accuracy"><span class="accuracy-badge">Accuracy: <strong id="wind-accuracy">89.7%</strong></span></div></div>
+              <div class="chart-body tall"><canvas id="chart-wind-forecast"></canvas></div>
+            </div>
+            <div class="forecast-sidebar">
+              <div class="weather-card glass-card">
+                <h3>Live Weather — <span id="forecast-city">--</span></h3>
+                <div class="weather-grid" id="forecast-weather-grid">
+                  <!-- Filled by JS -->
+                </div>
+              </div>
+              <div class="model-card glass-card">
+                <h3>AI Model Info</h3>
+                <div class="model-details">
+                  <div class="model-row"><span>Architecture</span><span>Transformer + LSTM</span></div>
+                  <div class="model-row"><span>Training Data</span><span>5 years historical</span></div>
+                  <div class="model-row"><span>Features</span><span>42 multi-modal</span></div>
+                  <div class="model-row"><span>Update Cycle</span><span>Every 15 min</span></div>
+                  <div class="model-row"><span>RMSE (Solar)</span><span>0.34 kW</span></div>
+                  <div class="model-row"><span>RMSE (Wind)</span><span>0.58 kW</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Consumer Marketplace -->
+        <section id="page-consumer-marketplace" class="page">
+          <div class="page-header"><h1>Energy Marketplace</h1><p class="page-desc">Buy and sell energy peer-to-peer at better prices than the grid</p></div>
+          <div class="market-stats-row">
+            <div class="market-stat glass-card"><span class="market-stat-label">Current Price</span><span class="market-stat-value" id="market-price">₹--/kWh</span><span class="stat-change positive">↓ vs grid</span></div>
+            <div class="market-stat glass-card"><span class="market-stat-label">Active Trades</span><span class="market-stat-value" id="market-trades">--</span><span class="stat-change positive">--</span></div>
+            <div class="market-stat glass-card"><span class="market-stat-label">Energy Traded</span><span class="market-stat-value" id="market-energy">-- kWh</span><span class="stat-change positive">Today</span></div>
+            <div class="market-stat glass-card"><span class="market-stat-label">My Savings</span><span class="market-stat-value" id="market-savings">₹--</span><span class="stat-change positive">Total</span></div>
+          </div>
+          <div class="market-content">
+            <div class="glass-card" style="margin-bottom: 1.5rem;">
+              <div class="chart-header"><h3>Place a Trade</h3></div>
+              <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1rem;">
+                <select id="trade-type" class="form-input" style="flex: 1;"><option value="BUY">BUY</option><option value="SELL">SELL</option></select>
+                <input type="number" id="trade-energy" class="form-input" placeholder="Energy (kWh)" style="flex: 2;" step="0.1">
+                <input type="number" id="trade-price" class="form-input" placeholder="Price (₹/kWh)" style="flex: 2;" step="0.01">
+                <button class="btn btn-primary" id="btn-submit-trade">Submit Trade</button>
+              </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+              <div class="orderbook glass-card">
+                <div class="chart-header"><h3>Live Order Book</h3><span class="live-tag"><span class="live-dot-sm"></span>Live</span></div>
+                <div class="orderbook-table-wrap">
+                  <table class="orderbook-table"><thead><tr><th>Prosumer</th><th>Type</th><th>Energy (kWh)</th><th>Price (₹/kWh)</th><th>Status</th></tr></thead><tbody id="orderbook-body"></tbody></table>
+                </div>
+              </div>
+              <div class="price-chart glass-card">
+                <div class="chart-header"><h3>Price Trend (24h)</h3></div>
+                <div class="chart-body"><canvas id="chart-price"></canvas></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Consumer Carbon -->
+        <section id="page-consumer-carbon" class="page">
+          <div class="page-header"><h1>My Carbon Credits</h1><p class="page-desc">Track your green impact, earn achievements, and climb the leaderboard</p></div>
+          <div class="carbon-hero">
+            <div class="carbon-score-card glass-card">
+              <div class="carbon-score-header"><h3>Your Green Impact Score</h3><span class="carbon-rank" id="carbon-rank">🏆 Rank #--</span></div>
+              <div class="carbon-score-body">
+                <div class="carbon-ring-wrap">
+                  <canvas id="carbon-ring" width="200" height="200"></canvas>
+                  <div class="carbon-ring-overlay"><span class="carbon-score-val" id="carbon-score-val">--</span><span class="carbon-score-unit">points</span></div>
+                </div>
+                <div class="carbon-achievements">
+                  <h4>Achievements</h4>
+                  <div class="achievement-grid">
+                    <div class="achievement unlocked"><span class="achievement-icon">⚡</span><span class="achievement-name">First Spark</span></div>
+                    <div class="achievement unlocked"><span class="achievement-icon">🌱</span><span class="achievement-name">Green Seed</span></div>
+                    <div class="achievement unlocked"><span class="achievement-icon">🤝</span><span class="achievement-name">Trader</span></div>
+                    <div class="achievement unlocked"><span class="achievement-icon">🔥</span><span class="achievement-name">Week Streak</span></div>
+                    <div class="achievement locked"><span class="achievement-icon">🌳</span><span class="achievement-name">Forest Maker</span></div>
+                    <div class="achievement locked"><span class="achievement-icon">👑</span><span class="achievement-name">Grid King</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carbon-stats-col">
+              <div class="carbon-stat-card glass-card"><span class="carbon-big-icon">🌍</span><span class="carbon-stat-value" id="c-total">-- tCO₂</span><span class="carbon-stat-label">Total Carbon Saved</span></div>
+              <div class="carbon-stat-card glass-card"><span class="carbon-big-icon">🌲</span><span class="carbon-stat-value" id="c-trees">--</span><span class="carbon-stat-label">Trees Equivalent</span></div>
+              <div class="carbon-stat-card glass-card"><span class="carbon-big-icon">🚗</span><span class="carbon-stat-value" id="c-cars">-- km</span><span class="carbon-stat-label">Car Emissions Avoided</span></div>
+            </div>
+          </div>
+          <div class="carbon-charts-row">
+            <div class="chart-card glass-card"><div class="chart-header"><h3>Monthly Carbon Savings</h3></div><div class="chart-body"><canvas id="chart-carbon-monthly"></canvas></div></div>
+            <div class="leaderboard glass-card"><div class="chart-header"><h3>Community Leaderboard</h3><span class="live-tag"><span class="live-dot-sm"></span>Live</span></div><div class="leaderboard-list" id="leaderboard-list"></div></div>
+          </div>
+        </section>
+
+        <!-- Consumer AI Chat -->
+        <section id="page-consumer-ai-advisor" class="page">
+          <div class="page-header"><h1>🤖 AI Energy Advisor</h1><p class="page-desc">Get personalized energy tips and recommendations powered by Gemini AI</p></div>
+          <div class="ai-container consumer-ai">
+            <div class="ai-chat-card glass-card full-width">
+              <div class="ai-chat-header">
+                <div class="ai-avatar"><span>🤖</span></div>
+                <div><h3>Personal Energy Advisor</h3><p class="ai-model-tag">Powered by Gemini</p></div>
+              </div>
+              <div class="ai-chat-messages" id="consumer-ai-messages">
+                <div class="ai-message bot">
+                  <p>Hi! I'm your personal energy advisor. I can help you save money, optimize your energy usage, and reduce your carbon footprint.</p>
+                  <div class="ai-suggestions">
+                    <button class="ai-suggestion-btn consumer-ai-btn" data-q="How can I reduce my electricity bill based on current weather?">💰 Reduce my bill</button>
+                    <button class="ai-suggestion-btn consumer-ai-btn" data-q="Is now a good time to sell my excess solar energy on the marketplace?">☀️ Should I sell energy?</button>
+                    <button class="ai-suggestion-btn consumer-ai-btn" data-q="What appliances should I run now to take advantage of peak solar hours?">⏰ Best time to run appliances</button>
+                    <button class="ai-suggestion-btn consumer-ai-btn" data-q="Give me tips to earn more carbon credits this week">🌱 Earn more carbon credits</button>
+                  </div>
+                </div>
+              </div>
+              <div class="ai-chat-input">
+                <input type="text" id="consumer-ai-input" placeholder="Ask me anything about your energy..." autocomplete="off">
+                <button id="consumer-ai-send" class="ai-send">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Notification Panel -->
+  <div class="notification-panel" id="notification-panel">
+    <div class="notif-header"><h3>Notifications</h3><button class="notif-close" id="notif-close">×</button></div>
+    <div class="notif-list" id="notif-list"></div>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
